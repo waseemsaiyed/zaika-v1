@@ -1,0 +1,9 @@
+{
+	"appId": "com.mumbaizaika.pos",
+	"appName": "Mumbai Zaika POS",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https",
+		"cleartext": true
+	}
+}

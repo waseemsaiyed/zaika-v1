@@ -27,6 +27,7 @@ export const AdminKhata: React.FC = () => {
   const [sheetId, setSheetId] = useState(googleSheetConfig.sheetId);
   const [webhookKey, setWebhookKey] = useState(googleSheetConfig.webhookUrl);
   const [waNumberInput, setWaNumberInput] = useState(dispatchWhatsAppNumber);
+  const [showApkModal, setShowApkModal] = useState(false);
 
   const handleKhataSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -594,33 +595,47 @@ export const AdminKhata: React.FC = () => {
             </div>
             <div>
               <h3 className="font-headline-sm text-[15px] font-bold text-[#1e1b17]">
-                PWA & Capacitor Bridge
+                Android APK & GitHub Actions
               </h3>
-              <p className="text-[11px] text-[#5a4136]">Native APK & Mobile Dispatch configuration</p>
+              <p className="text-[11px] text-[#5a4136]">Automated Cloud APK Compiler for Phones & POS Tablets</p>
             </div>
           </div>
           <span className="px-2 py-0.5 rounded bg-[#6bff8f]/30 text-[#006e2f] text-[10px] font-bold">
-            Active
+            CI/CD Ready
           </span>
         </div>
 
-        <div className="bg-[#f9f3eb] p-3 rounded-xl flex flex-col gap-1.5 border border-[#e2bfb0]/20">
+        <div className="bg-[#f9f3eb] p-3 rounded-xl flex flex-col gap-2 border border-[#e2bfb0]/20">
           <div className="flex items-center justify-between">
-            <span className="text-[12px] font-bold text-[#1e1b17]">Native APK Build Status</span>
-            <span className="text-[10px] font-bold text-[#006e2f]">Capacitor.js v5.7</span>
+            <div className="flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[16px] text-[#006e2f]">cloud_done</span>
+              <span className="text-[12px] font-bold text-[#1e1b17]">GitHub Actions Workflow Configured</span>
+            </div>
+            <span className="text-[10px] font-bold text-[#a04100]">Capacitor 8 + Java 21</span>
           </div>
-          <div className="text-[11px] text-[#5a4136] leading-relaxed">
-            Capacitor config ready. Service Worker running in standalone mode on Android devices.
-          </div>
-          <div className="bg-[#33302b] text-[#f7f0e8] p-2.5 rounded-lg font-mono text-[11px] flex items-center justify-between mt-1">
-            <span>$ ./build-apk.sh --release</span>
+          <p className="text-[11px] text-[#5a4136] leading-relaxed">
+            Push or export this repository to GitHub. The <span className="font-mono text-[10px] bg-white px-1.5 py-0.5 rounded font-bold text-[#1e1b17]">.github/workflows/build-apk.yml</span> workflow automatically compiles and outputs a signed debug <span className="font-mono text-[10px] bg-white px-1.5 py-0.5 rounded font-bold text-[#1e1b17]">mumbai-zaika-pos.apk</span> artifact!
+          </p>
+
+          <div className="grid grid-cols-2 gap-2 mt-1">
             <button
-              className="text-[#ffb693] hover:text-white"
-              onClick={copyBuildCommand}
-              title="Copy build command"
               type="button"
+              onClick={() => setShowApkModal(true)}
+              className="py-2 px-3 bg-[#a04100] text-white rounded-lg text-[11px] font-bold shadow-xs active:scale-95 transition flex items-center justify-center gap-1.5 hover:bg-[#853600]"
             >
-              <span className="material-symbols-outlined text-[16px]">content_copy</span>
+              <span className="material-symbols-outlined text-[15px]">install_mobile</span>
+              <span>APK Build Guide</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard?.writeText('git push origin main');
+                showToast('Copied `git push origin main` to clipboard!');
+              }}
+              className="py-2 px-3 bg-white text-[#1e1b17] border border-[#e2bfb0]/40 rounded-lg text-[11px] font-bold shadow-xs active:scale-95 transition flex items-center justify-center gap-1.5 hover:bg-[#fff8f1]"
+            >
+              <span className="material-symbols-outlined text-[15px]">terminal</span>
+              <span>Copy Git Push</span>
             </button>
           </div>
         </div>
@@ -653,6 +668,121 @@ export const AdminKhata: React.FC = () => {
           </p>
         </div>
       </section>
+
+      {/* APK Build Instructions Modal */}
+      {showApkModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-[#fcf8f4] w-full max-w-lg rounded-2xl shadow-2xl border border-[#e2bfb0]/40 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="p-4 bg-white border-b border-[#e2bfb0]/30 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-[#006e2f]/10 text-[#006e2f] flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[20px]">android</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-[15px] text-[#1e1b17]">Build APK via GitHub</h3>
+                  <p className="text-[11px] text-[#5a4136]">Zero-install automated cloud compilation</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowApkModal(false)}
+                className="w-8 h-8 rounded-full bg-[#f4ede5] flex items-center justify-center text-[#5a4136] hover:text-[#1e1b17]"
+              >
+                <span className="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-4 overflow-y-auto flex flex-col gap-3 text-[12px] text-[#1e1b17]">
+              <div className="p-3 bg-[#e8f5e9] text-[#1b5e20] rounded-xl border border-[#c8e6c9] flex items-start gap-2">
+                <span className="material-symbols-outlined text-[18px] flex-shrink-0 mt-0.5">check_circle</span>
+                <div>
+                  <span className="font-bold">Workflow file ready: </span>
+                  <span className="font-mono text-[11px]">.github/workflows/build-apk.yml</span>
+                  <p className="text-[11px] mt-0.5 text-[#2e7d32]">
+                    GitHub Actions is configured with Java 21, Node.js 20, Capacitor 8, and Android SDK.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 1 */}
+              <div className="bg-white p-3 rounded-xl border border-[#e2bfb0]/30 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-[#a04100] text-white text-[11px] font-bold flex items-center justify-center">1</span>
+                  <span className="font-bold text-[#1e1b17]">Export / Push to GitHub</span>
+                </div>
+                <p className="text-[11px] text-[#5a4136] pl-7">
+                  Click <strong>Settings &gt; Export to GitHub</strong> in AI Studio, or push your commits:
+                </p>
+                <div className="ml-7 bg-[#281810] text-[#f4ede5] p-2 rounded-lg font-mono text-[11px] flex items-center justify-between">
+                  <span>git push origin main</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard?.writeText('git add . && git commit -m "feat: android apk" && git push origin main');
+                      showToast('Copied git push command!');
+                    }}
+                    className="text-[#ffb693] hover:text-white"
+                    title="Copy command"
+                  >
+                    <span className="material-symbols-outlined text-[15px]">content_copy</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="bg-white p-3 rounded-xl border border-[#e2bfb0]/30 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-[#a04100] text-white text-[11px] font-bold flex items-center justify-center">2</span>
+                  <span className="font-bold text-[#1e1b17]">Watch GitHub Actions Build (~2 mins)</span>
+                </div>
+                <p className="text-[11px] text-[#5a4136] pl-7">
+                  Go to your repository on GitHub and click the <strong>Actions</strong> tab. You will see <em>"Build & Package Android APK"</em> running. You can also manually trigger it via <em>"Run workflow"</em>.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="bg-white p-3 rounded-xl border border-[#e2bfb0]/30 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-[#a04100] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+                  <span className="font-bold text-[#1e1b17]">Download the Compiled APK</span>
+                </div>
+                <p className="text-[11px] text-[#5a4136] pl-7">
+                  When the run finishes with a green checkmark, scroll down to <strong>Artifacts</strong> and click <span className="font-mono font-bold text-[#a04100]">mumbai-zaika-pos-apk</span> to download.
+                </p>
+              </div>
+
+              {/* Step 4 */}
+              <div className="bg-white p-3 rounded-xl border border-[#e2bfb0]/30 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-[#a04100] text-white text-[11px] font-bold flex items-center justify-center">4</span>
+                  <span className="font-bold text-[#1e1b17]">Install on Android Device</span>
+                </div>
+                <p className="text-[11px] text-[#5a4136] pl-7">
+                  Transfer the APK to your phone or tablet, enable <em>"Install unknown apps"</em> when prompted, and launch the app offline or online!
+                </p>
+              </div>
+
+              {/* Local Dev Note */}
+              <div className="p-2.5 bg-[#f4ede5] rounded-xl text-[11px] text-[#5a4136]">
+                💡 <strong>Prefer local Android Studio?</strong> Run <code className="font-bold text-[#1e1b17]">npm run cap:open</code> on your laptop to open the generated native project in Android Studio and click <em>Run</em>.
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-3 bg-white border-t border-[#e2bfb0]/30 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowApkModal(false)}
+                className="px-5 py-2 bg-[#1e1b17] text-white rounded-full text-[12px] font-bold hover:bg-[#33302b] active:scale-95 transition"
+              >
+                Got It, Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
