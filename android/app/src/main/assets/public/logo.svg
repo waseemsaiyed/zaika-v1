@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" width="250" height="70">
+  <defs>
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A1A"/>
+      <stop offset="100%" stop-color="#E05300"/>
+    </linearGradient>
+    <linearGradient id="steamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FF9E40" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Dark Rounded App Icon Badge -->
+  <rect x="5" y="8" width="54" height="54" rx="16" fill="#2B1A12"/>
+  
+  <!-- Coffee cup body & handle -->
+  <path d="M19 39 C19 46 25 50 32 50 C38 50 44 46 44 39 L45 27 L18 27 Z" fill="url(#saffronGrad)"/>
+  <path d="M44 30.5 C48 30.5 50.5 33.5 50.5 36.5 C50.5 39.5 47.5 42 44 42" fill="none" stroke="#FF7A1A" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Aroma steam / chili flame swooshes -->
+  <path d="M26 23 Q27.5 17.5 24.5 13.5" fill="none" stroke="#22C55E" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M32 23 Q34.5 17 31.5 11.5" fill="none" stroke="#FBBF24" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M37.5 23 Q39.5 17.5 36.5 13.5" fill="none" stroke="#FF6B00" stroke-width="2.6" stroke-linecap="round"/>
+  
+  <!-- Green separator dot -->
+  <circle cx="67" cy="27" r="2.75" fill="#22C55E"/>
+
+  <!-- Brand Typography -->
+  <text x="76" y="34" font-family="'Plus Jakarta Sans', 'Poppins', 'Inter', sans-serif" font-weight="900" font-size="20" fill="#2B1A12" letter-spacing="-0.3">MUMBAI <tspan fill="#FF6B00">ZAIKA</tspan></text>
+  <text x="77" y="49" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="8.5" fill="#786055" letter-spacing="1.4">FAST FOOD &amp; CAFE • 2026</text>
+</svg>

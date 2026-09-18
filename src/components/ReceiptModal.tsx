@@ -43,9 +43,12 @@ export const ReceiptModal: React.FC = () => {
 
         {/* Printable Thermal Slip Area */}
         <div className="p-5 font-mono text-[12px] flex flex-col gap-2.5 bg-[#fdfcf9]">
-          <div className="text-center border-b border-dashed border-[#a08a7e] pb-3">
-            <h2 className="font-bold text-[16px] tracking-tight">MUMBAI ZAIKA</h2>
-            <p className="text-[10px] text-[#5a4136]">Authentic Street Fast Food & Cafe</p>
+          <div className="flex flex-col items-center text-center border-b border-dashed border-[#a08a7e] pb-3">
+            <img
+              src="/logo.svg"
+              alt="Mumbai Zaika"
+              className="h-10 w-auto object-contain mb-1.5"
+            />
             <p className="text-[10px] text-[#5a4136]">Zakaria Masjid Rd, Masjid Bunder, Mumbai-09</p>
             <p className="text-[10px] text-[#5a4136]">GSTIN: 27AABCM8492Q1Z3 • Ph: +91 97738 48442</p>
           </div>

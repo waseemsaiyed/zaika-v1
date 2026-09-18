@@ -129,16 +129,26 @@ export const HomeStorefront: React.FC = () => {
               </span>
             </div>
 
-            <div className="flex flex-col">
-              <h2 className="font-headline-lg-mobile text-[26px] font-extrabold text-[#1e1b17] tracking-tight leading-tight">
-                Mumbai Zaika
-              </h2>
-              <p className="text-[13px] text-[#a04100] font-bold mt-0.5">
-                Taste of Mumbai, Served Fresh
-              </p>
-              <p className="text-[12px] text-[#5a4136] mt-1 leading-snug">
-                Near Zakaria Masjid, Masjid Bunder • Order direct via WhatsApp or Dine-in
-              </p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo-icon.svg"
+                alt="Mumbai Zaika Emblem"
+                className="w-14 h-14 rounded-2xl shadow-md flex-shrink-0"
+              />
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5">
+                  <h2 className="font-headline-lg-mobile text-[25px] font-black text-[#1e1b17] tracking-tight leading-tight">
+                    Mumbai <span className="text-[#ff6b00]">Zaika</span>
+                  </h2>
+                  <span className="w-2 h-2 rounded-full bg-[#22c55e]" title="Fresh & Open"></span>
+                </div>
+                <p className="text-[10px] font-bold text-[#786055] tracking-widest uppercase">
+                  FAST FOOD &amp; CAFE • 2026
+                </p>
+                <p className="text-[12px] text-[#5a4136] mt-0.5 leading-snug">
+                  Zakaria Masjid Rd, Masjid Bunder • Order direct or Dine-in
+                </p>
+              </div>
             </div>
 
             {/* Quick Action CTAs */}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 
 export const Header: React.FC = () => {
-  const { activeTab, cartCount, setIsCartOpen, setIsSheetViewerOpen } = useApp();
+  const { activeTab, setActiveTab, cartCount, setIsCartOpen, setIsSheetViewerOpen } = useApp();
 
   const getSubTitle = () => {
     switch (activeTab) {
@@ -24,27 +24,26 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-[#fff8f1]/85 backdrop-blur-xl shadow-[0_4px_20px_-2px_rgba(43,26,18,0.05)] pt-safe">
-      <div className="h-16 px-4 flex items-center justify-between gap-2 max-w-4xl mx-auto w-full">
-        {/* Brand & Status */}
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+    <header className="fixed top-0 inset-x-0 z-50 bg-[#fff8f1]/90 backdrop-blur-xl shadow-[0_4px_20px_-2px_rgba(43,26,18,0.06)] pt-safe border-b border-[#e2bfb0]/30">
+      <div className="h-16 px-3 sm:px-4 flex items-center justify-between gap-2 max-w-4xl mx-auto w-full">
+        {/* Brand Logo & Status */}
+        <div
+          onClick={() => setActiveTab('home')}
+          className="flex items-center gap-2 min-w-0 flex-1 cursor-pointer select-none group"
+          title="Mumbai Zaika Home"
+        >
           <img
-            alt="Mumbai Zaika Modern Brand Logo"
-            className="h-8 w-auto object-contain flex-shrink-0"
-            src="https://lh3.googleusercontent.com/aida/AEtjO1VtNPluz_PQ2EKVDaJ0Ley4amuNWzjD2tER20aTTk0C87eCmUyoHSIjpR7_B4kfhaQHEbhD3wi7GoWRNOn4ADN8gsyn2QfXR5uZqbmKTUUWd-wS9VXC5K7_Z3HcHFdo8bPRCLTOkgkUH2i6jaWiEhnIktmK7anODVfUnsMzdCrAcL5YEL2KvNVa7LlCmv7gVuT8NPtJybyW5d9EBeLX20RNktKV_eZ0ig0JwyWJtfSqeTS250W7nMyYNg"
+            alt="Mumbai Zaika Logo"
+            className="h-9 sm:h-10 w-auto object-contain flex-shrink-0 transition-transform group-hover:scale-102"
+            src="/logo.svg"
           />
-          <div className="flex flex-col min-w-0">
-            <div className="flex items-center gap-1">
-              <span className="font-headline-sm text-[17px] font-bold text-[#1e1b17] truncate tracking-tight">
-                Mumbai Zaika
-              </span>
-              <span className="text-[11px] text-[#5a4136] font-normal hidden sm:inline">
-                {getSubTitle()}
-              </span>
-            </div>
-            <span className="text-[10px] text-[#006e2f] flex items-center gap-1 truncate font-medium">
+          <div className="hidden sm:flex flex-col min-w-0 border-l border-[#e2bfb0]/50 pl-2">
+            <span className="text-[10px] text-[#006e2f] flex items-center gap-1 font-bold truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-[#006e2f] flex-shrink-0 animate-pulse"></span>
-              Masjid Bunder, Mumbai • Open till 1AM
+              Live Kitchen • Masjid Bunder
+            </span>
+            <span className="text-[10px] text-[#5a4136] font-medium truncate">
+              {getSubTitle()}
             </span>
           </div>
         </div>
