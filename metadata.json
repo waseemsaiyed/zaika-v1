@@ -1,0 +1,6 @@
+{
+  "name": "Mumbai Zaika",
+  "description": "Authentic Mumbai street fast food cafe & digital POS: live menu ordering, speed cashier billing, table reservations, and automated khata ledger.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
